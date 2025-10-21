@@ -1,15 +1,13 @@
-import { Text, View } from "react-native";
+import Latihan1 from "@/components/latihan/Latihan1";
+import React, { useState } from "react";
+import { View } from "react-native";
 
-export default function Index() {
+export default function App() {
+  const [nama, setNama] = useState("");
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+    <View >
+      <Latihan1 />
     </View>
   );
 }
