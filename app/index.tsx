@@ -1,4 +1,5 @@
-import Latihan1 from "@/components/latihan/Latihan1";
+//import Latihan1 from "@/components/latihan/Latihan1";
+import LoginScreen from "@/components/tugas/LoginScreen";
 import React, { useState } from "react";
 import { View } from "react-native";
 
@@ -7,7 +8,8 @@ export default function App() {
 
   return (
     <View >
-      <Latihan1 />
+      {/*<Latihan1/>*/}
+      <LoginScreen />
     </View>
   );
 }
