@@ -1,34 +1,77 @@
 import { Ionicons } from "@expo/vector-icons";
 import {
-    FlatList,
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  FlatList,
+  Image,
+  ImageSourcePropType,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const notes = [
+const notes:Note[] = [
   {
     id: 1,
-    image: "@/assets/images/Note-Logo.png",
+    image: require("@/assets/images/icon3.png"),
     title: "SMDKAMWMKWA",
     description: "Madwa",
     date: "29 Oktober 2025",
   },
   {
     id: 2,
-    image: "@/assets/images/Note-Logo.png",
+    image: require("@/assets/images/Icon1.png"),
     title: "Belajar menulis",
     description: "Hai aku bisa menulis",
     date: "30 Oktober 2025",
+  },
+  {
+    id: 3,
+    image: require("@/assets/images/icon4.png"),
+    title: "Masak bos",
+    description: "eh gosong",
+    date: "03 November 2025",
+  },
+  {
+    id: 4,
+    image: require("@/assets/images/icon2.png"),
+    title: "makan",
+    description: "gosong",
+    date: "05 November 2025",
+  },
+    {
+    id: 5,
+    image: require("@/assets/images/icon3.png"),
+    title: "SMDKAMWMKWA",
+    description: "Madwa",
+    date: "29 Oktober 2025",
+  },
+  {
+    id: 6,
+    image: require("@/assets/images/Icon1.png"),
+    title: "Belajar menulis",
+    description: "Hai aku bisa menulis",
+    date: "30 Oktober 2025",
+  },
+  {
+    id: 7,
+    image: require("@/assets/images/icon4.png"),
+    title: "Masak bos",
+    description: "eh gosong",
+    date: "03 November 2025",
+  },
+  {
+    id: 8,
+    image: require("@/assets/images/icon2.png"),
+    title: "makan",
+    description: "gosong",
+    date: "05 November 2025",
   },
 ];
 
 type Note = {
   id: number;
-  image: string;
+  image: ImageSourcePropType;
   title: string;
   description: string;
   date: string;
@@ -38,8 +81,8 @@ const NoteItem = ({ item }: { item: Note }) => {
   return (
     <View style={styles.card}>
       <Image
-        source={require("@/assets/images/Note-Logo.png")}
-        style={{ width: 80, height: 80 }}
+        style={{ width: 80, height: 80 }} 
+        source={item.image}
       />
       <View style={styles.cardContainer}>
         <Text style={styles.cardTitle}>{item.title}</Text>
@@ -66,7 +109,8 @@ export default function HomeScreen() {
           data={notes}
           renderItem={({ item }) => <NoteItem item={item} />}
           keyExtractor={(item) => item.id.toString()}
-          contentContainerStyle={{ gap: 15 }}
+          contentContainerStyle={{ gap: 10, flexGrow: 1 }}
+          ListEmptyComponent={() => <EmptyData/>}
         />
       </View>
       <TouchableOpacity style={styles.fab}>
@@ -74,6 +118,19 @@ export default function HomeScreen() {
       </TouchableOpacity>
     </SafeAreaView>
   );
+}
+
+const EmptyData = () => {
+  return(
+    <View style ={styles.emptyContainer}>
+      <Image
+      style={{ width: 150, height: 150 }}
+      source={require("@/assets/images/empty.png")}
+      />
+      <Text style={styles.emptyTitle}>Add your first note</Text>
+      <Text style={styles.emptyDesc}>Save your thoughts, task or inspirations</Text>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -130,5 +187,21 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: "#bbbbbbff",
     marginTop: 10,
+  },
+  emptyContainer:{
+    flex: 1,
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 8,
+  },
+  emptyTitle:{
+    fontSize: 15,
+    fontWeight: "bold",
+    marginTop: 8,
+  },
+  emptyDesc:{
+    fontSize: 15,
+    color: "gray"
   },
 });
