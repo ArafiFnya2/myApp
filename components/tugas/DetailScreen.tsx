@@ -24,10 +24,10 @@ export default function DetailScreen() {
         </ScrollView>
 
         <View style={styles.bottomBar}>
-          <TouchableOpacity style={[styles.btn, styles.btnUpdate]} onPress={() => { /* handle update */ }}>
+          <TouchableOpacity style={[styles.btn, styles.btnUpdate]} onPress={() => {}}>
             <Text style={styles.btnText}>Update</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.btn, styles.btnDelete]} onPress={() => { /* handle delete */ }}>
+          <TouchableOpacity style={[styles.btn, styles.btnDelete]} onPress={() => {}}>
             <Text style={styles.btnText}>Delete</Text>
           </TouchableOpacity>
         </View>
