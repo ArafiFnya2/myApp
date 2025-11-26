@@ -2,12 +2,12 @@ import { notes } from "@/data/noteData";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import {
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -16,16 +16,29 @@ export default function DetailScreen() {
   const { id } = useLocalSearchParams();
 
   const note = notes.find((note) => note.id === Number(id));
-  console.log(note);
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity style={styles.appBar} onPress={() => router.push("/")}>
-        <Ionicons name="arrow-back" size={24} color="#FF5B13" />
+      <View style={styles.appBar}>
+        <TouchableOpacity onPress={() => router.push("/")}>
+          <Ionicons name="arrow-back" size={24} color="#FF5B13" />
+        </TouchableOpacity>
         <Text style={styles.appBarTitle}>Note Details</Text>
-      </TouchableOpacity>
+      </View>
       <ScrollView>
-        <Image style={{ width: "100%", height: 190 }} source={note?.image} />
+        <View
+          style={{
+            alignItems: "center",
+          }}
+        >
+          <Image
+            style={{
+              width: "65%",
+              height: 190,
+            }}
+            source={note?.image}
+          />
+        </View>
         <View style={styles.content}>
           <Text style={styles.title}>{note?.title}</Text>
           <Text style={styles.date}>{note?.date}</Text>
@@ -33,7 +46,10 @@ export default function DetailScreen() {
         </View>
       </ScrollView>
       <View style={styles.cardButton}>
-        <TouchableOpacity style={styles.updateButton}>
+        <TouchableOpacity
+          style={styles.updateButton}
+          onPress={() => router.push(`/update/${note?.id}`)}
+        >
           <Text style={styles.textButton}>Update</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.deleteButton}>
